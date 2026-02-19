@@ -1,0 +1,141 @@
+:root {
+    --green: #0b7a1f;
+    --text: #111;
+    --muted: #6b6b6b;
+    --bg: #ffffff;
+    --panel: #f7f7f7;
+    --box: #d9d9d9;
+    --border: #e6e6e6;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    /* scroll is standaard, dit maakt het alleen iets smoother */
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 900px;
+    /* mooier op desktop */
+    margin: 0 auto;
+    padding: 0 18px;
+}
+
+/* GROENE BALKEN */
+.bar {
+    background: var(--green);
+    color: #fff;
+}
+
+.bar--top {
+    padding: 44px 0;
+    /* hoger zodat het niet “gepropt” voelt */
+}
+
+.bar--mid {
+    padding: 20px 0;
+}
+
+.bar__title {
+    margin: 0;
+    text-align: center;
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: .2px;
+}
+
+/* SECTIES */
+.section {
+    padding: 46px 0;
+    /* meer ruimte => scroll gevoel */
+}
+
+.section__title {
+    margin: 0 0 16px;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+}
+
+/* TEAM */
+.team {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: center;
+}
+
+.avatar {
+    width: 78px;
+    /* groter */
+    height: 78px;
+    border-radius: 999px;
+    background: #fff;
+    border: 4px solid #d3d3d3;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, .03);
+}
+
+/* SITUATIE BLOKKEN */
+.split {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 22px;
+    align-items: start;
+}
+
+.split--reverse {
+    grid-template-columns: 340px 1fr;
+}
+
+.placeholder {
+    width: 100%;
+    height: 260px;
+    /* veel groter */
+    background: var(--box);
+    border: 2px solid #cfcfcf;
+    border-radius: 12px;
+}
+
+.helper {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* THIN DIVIDERS */
+.divider {
+    height: 10px;
+    background: var(--green);
+}
+
+/* RESPONSIVE */
+@media (max-width: 820px) {
+
+    .split,
+    .split--reverse {
+        grid-template-columns: 1fr;
+    }
+
+    .placeholder {
+        height: 220px;
+    }
+}
