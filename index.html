@@ -79,6 +79,12 @@
         }
 
         .logo {
+            height: 40px;
+            /* pas aan naar wens */
+            width: auto;
+        }
+
+        /* .logo {
             width: 38px;
             height: 38px;
             border-radius: 14px;
@@ -89,7 +95,7 @@
                 rgba(255, 255, 255, .08);
             border: 1px solid var(--stroke);
             box-shadow: 0 12px 34px rgba(0, 0, 0, .32);
-        }
+        } */
 
         .nav {
             display: flex;
@@ -718,6 +724,7 @@
             from {
                 transform: translateX(0);
             }
+
             to {
                 transform: translateX(-50%);
             }
@@ -752,7 +759,7 @@
     <div class="container">
         <header class="top">
             <div class="brand">
-                <div class="logo"></div>
+                <img src="images/logo.png" alt="One-Pager Logo" class="logo">
             </div>
 
             <!-- ✅ Toggle knop toegevoegd -->
@@ -770,8 +777,10 @@
                     <h1>Project Hybride wereld </h1>
                     <p class="lead">
                         Welkom bij onze one-pager! <br><br>
-                        Hier presenteren we in een oogopslag wie we zijn, wat we doen en gedaan hebben en waar we naartoe willen. <br><br>
-                        Elke sprint geven we op dit platform een update over onze voortgang, uitdagingen en inzichten. Dit is te zien in onze tijdlijn. <br><br>
+                        Hier presenteren we in een oogopslag wie we zijn, wat we doen en gedaan hebben en waar we
+                        naartoe willen. <br><br>
+                        Elke sprint geven we op dit platform een update over onze voortgang, uitdagingen en inzichten.
+                        Dit is te zien in onze tijdlijn. <br><br>
                         Klaar voor een snelle, visuele reis? Let's go!
                     </p>
 
