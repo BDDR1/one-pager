@@ -545,6 +545,50 @@
                 scroll-behavior: auto;
             }
         }
+
+        /* Company names slider */
+        #companynames {
+            overflow: hidden;
+            padding: 40px 0;
+        }
+
+        #companynames .section-head {
+            display: block;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        #companynames .names {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        #companynames .scrolling-list {
+            display: inline-flex;
+            gap: 80px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            min-width: 200%;
+            animation: scroll-left 30s linear infinite;
+        }
+
+        #companynames .scrolling-list li {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        /* Animatie */
+        @keyframes scroll-left {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-50%);
+            }
+        }
     </style>
 </head>
 
@@ -674,6 +718,26 @@
                         <li>Impact voor doelgroep: …</li>
                     </ul>
                 </div>
+            </div>
+        </section>
+        <section id="companynames">
+            <div class="section-head">
+                <h2>Partners van dit project</h2>
+            </div>
+
+            <div class="names">
+                <ul class="scrolling-list">
+                    <li>Gemeente Rotterdam</li>
+                    <li>Hogeschool Rotterdam</li>
+                    <li>Team BDDR</li>
+                    <li>Katoenhuis</li>
+
+                    <!-- Dubbel voor vloeiende infinite scroll -->
+                    <li>Gemeente Rotterdam</li>
+                    <li>Hogeschool Rotterdam</li>
+                    <li>Team BDDR</li>
+                    <li>Katoenhuis</li>
+                </ul>
             </div>
         </section>
 
