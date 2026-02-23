@@ -722,6 +722,29 @@
                 transform: translateX(-50%);
             }
         }
+
+        #demo {
+            margin-top: 40px;
+        }   
+
+        #demo .section-head {
+            display: block;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .video-wrapper {
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,.4);
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
     </style>
 </head>
 
@@ -858,6 +881,18 @@
                         <li>Impact voor doelgroep: …</li>
                     </ul>
                 </div>
+            </div>
+        </section>
+        <section id="demo">
+            <div class="section-head">
+                <h2>Demo video eindproduct</h2>
+            </div>
+
+            <div class="video-wrapper">
+                <video controls>
+                    <source src="/Users/macbook/one-pager/Screen Recording 2026-02-23 at 14.04.47.mp4" type="video/mp4">
+                    Je browser ondersteunt geen video.
+                </video>
             </div>
         </section>
         <section id="companynames">
