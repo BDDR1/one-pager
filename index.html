@@ -547,6 +547,80 @@
             margin: 8px 0;
         }
 
+        /* Timeline */
+        .timeline-container {
+            max-width: 896px; /* max-w-4xl */
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 24px;
+        }
+
+        .timeline-date {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            color: var(--muted);
+            font-size: 13px;
+            padding-top: 4px;
+        }
+
+        .timeline-date span {
+            display: block;
+            font-weight: 700;
+            color: var(--a);
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .timeline-content {
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--stroke);
+        }
+
+        .timeline-item:last-child .timeline-content {
+            border-bottom: none;
+        }
+
+        .timeline-title {
+            margin: 0 0 10px;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text);
+            transition: color .2s ease;
+        }
+
+        .timeline-title:hover {
+            color: var(--a);
+        }
+
+        .timeline-desc {
+            margin: 0 0 16px;
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(52, 211, 153, .10);
+            color: var(--c);
+            border: 1px solid rgba(52, 211, 153, .20);
+            font-weight: 500;
+        }
+
         footer {
             margin-top: 26px;
             color: var(--muted);
@@ -566,6 +640,13 @@
 
             .team-grid {
                 grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 12px;
             }
         }
 
@@ -747,6 +828,8 @@
             </div>
         </section>
 
+       
+
         <section id="situatie">
             <div class="section-head">
                 <h2>Huidige vs gewenste situatie</h2>
@@ -795,6 +878,83 @@
                     <li>Team BDDR</li>
                     <li>Katoenhuis</li>
                 </ul>
+            </div>
+        </section>
+
+        <section class="timeline">
+            <div class="section-head">
+                <h2>Tijdlijn</h2>
+                <p>Onze voortgang per sprint</p>
+            </div>
+
+            <div class="timeline-container">
+                <!-- Sprint 1 -->
+                <div class="timeline-item reveal">
+                    <div class="timeline-date">
+                        <span>Sprint 1</span>
+                        Februari 2025
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Concept & Onderzoek</h3>
+                        <p class="timeline-desc">Verkenning van het probleemgebied en eerste schetsen van de hybride wereld. Focus op doelgroepanalyse en technische haalbaarheid.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">User Research</span>
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">Concepting</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sprint 2 -->
+                <div class="timeline-item reveal">
+                    <div class="timeline-date">
+                        <span>Sprint 2</span>
+                        Maart 2025
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Prototyping & Design</h3>
+                        <p class="timeline-desc">Ontwikkeling van het eerste klikbare prototype en opzet van de visuele identiteit. Eerste tests met gebruikers.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML/CSS</span>
+                            <span class="tech-tag">Prototyping</span>
+                            <span class="tech-tag">UI Design</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sprint 3 -->
+                <div class="timeline-item reveal">
+                    <div class="timeline-date">
+                        <span>Sprint 3</span>
+                        April 2025
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Realisatie & Integratie</h3>
+                        <p class="timeline-desc">Bouwen van de kernfunctionaliteiten en koppelen van de verschillende componenten tot één geheel.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">API Integratie</span>
+                            <span class="tech-tag">Motion</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sprint 4 -->
+                <div class="timeline-item reveal">
+                    <div class="timeline-date">
+                        <span>Sprint 4</span>
+                        PRESENT
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Oplevering & Polish</h3>
+                        <p class="timeline-desc">Laatste optimalisaties, bugfixes en voorbereiding voor de eindpresentatie. De puntjes op de i.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Deployment</span>
+                            <span class="tech-tag">Documentation</span>
+                            <span class="tech-tag">Final Polish</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
