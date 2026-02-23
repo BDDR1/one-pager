@@ -3,89 +3,700 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>BDDR - One pager</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>One Pager – Motion</title>
+    <style>
+        :root {
+            --bg0: #070812;
+            --bg1: #0b1022;
+            --card: rgba(255, 255, 255, .06);
+            --stroke: rgba(255, 255, 255, .12);
+            --text: #eef1ff;
+            --muted: #b7c0e7;
+            --a: #6ee7ff;
+            --b: #a78bfa;
+            --c: #34d399;
+            --shadow: 0 18px 60px rgba(0, 0, 0, .42);
+            --r: 18px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+            color: var(--text);
+            background:
+                radial-gradient(800px 520px at 20% 10%, rgba(110, 231, 255, .18), transparent 55%),
+                radial-gradient(900px 520px at 90% 18%, rgba(167, 139, 250, .16), transparent 55%),
+                radial-gradient(700px 420px at 60% 90%, rgba(52, 211, 153, .10), transparent 60%),
+                linear-gradient(180deg, var(--bg0), var(--bg1) 55%, var(--bg0));
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1120px, 92vw);
+            margin: 0 auto;
+            padding: 28px 0 70px;
+        }
+
+        /* Top */
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            padding: 8px 0 18px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            letter-spacing: .2px;
+        }
+
+        .logo {
+            width: 38px;
+            height: 38px;
+            border-radius: 14px;
+            background:
+                radial-gradient(circle at 30% 25%, var(--a), transparent 55%),
+                radial-gradient(circle at 75% 65%, var(--b), transparent 60%),
+                radial-gradient(circle at 40% 75%, var(--c), transparent 55%),
+                rgba(255, 255, 255, .08);
+            border: 1px solid var(--stroke);
+            box-shadow: 0 12px 34px rgba(0, 0, 0, .32);
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .nav a {
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            transition: .2s ease;
+        }
+
+        .nav a:hover {
+            background: rgba(255, 255, 255, .06);
+            border-color: var(--stroke);
+            color: var(--text);
+            transform: translateY(-1px);
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            border-radius: calc(var(--r) + 10px);
+            border: 1px solid rgba(255, 255, 255, .10);
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .03));
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            padding: 34px;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            background:
+                radial-gradient(620px 260px at 18% 18%, rgba(110, 231, 255, .22), transparent 60%),
+                radial-gradient(520px 260px at 88% 28%, rgba(167, 139, 250, .20), transparent 62%);
+            filter: blur(0px);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(255, 255, 255, .06), transparent 35%, rgba(255, 255, 255, .04));
+            opacity: .25;
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 18px;
+            align-items: stretch;
+        }
+
+        .kicker {
+            display: inline-flex;
+            gap: 10px;
+            align-items: center;
+            color: var(--muted);
+            font-size: 13px;
+            border: 1px solid var(--stroke);
+            background: rgba(0, 0, 0, .12);
+            padding: 8px 12px;
+            border-radius: 999px;
+            width: fit-content;
+            backdrop-filter: blur(10px);
+        }
+
+        .spark {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, var(--a), var(--b));
+            box-shadow: 0 0 0 6px rgba(110, 231, 255, .10);
+        }
+
+        h1 {
+            margin: 12px 0 10px;
+            font-size: clamp(28px, 3.3vw, 46px);
+            line-height: 1.1;
+            letter-spacing: -.6px;
+        }
+
+        .lead {
+            margin: 0;
+            max-width: 62ch;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .hero-actions {
+            margin-top: 16px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 14px;
+            border: 1px solid var(--stroke);
+            background: rgba(255, 255, 255, .06);
+            color: var(--text);
+            transition: .2s ease;
+            user-select: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            background: rgba(255, 255, 255, .09);
+        }
+
+        .btn.primary {
+            border-color: rgba(110, 231, 255, .30);
+            background: linear-gradient(135deg, rgba(110, 231, 255, .18), rgba(167, 139, 250, .14));
+        }
+
+        .btn .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--a);
+        }
+
+        .summary {
+            border-radius: var(--r);
+            border: 1px solid rgba(255, 255, 255, .10);
+            background: rgba(10, 14, 28, .35);
+            backdrop-filter: blur(12px);
+            padding: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summary::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            background:
+                radial-gradient(200px 140px at 20% 20%, rgba(52, 211, 153, .16), transparent 60%),
+                radial-gradient(220px 160px at 80% 50%, rgba(110, 231, 255, .16), transparent 60%);
+            pointer-events: none;
+            opacity: .9;
+        }
+
+        .summary h3 {
+            position: relative;
+            margin: 0 0 10px;
+            font-size: 14px;
+            letter-spacing: .2px;
+        }
+
+        .summary ul {
+            position: relative;
+            margin: 0;
+            padding-left: 18px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .summary li {
+            margin: 8px 0;
+        }
+
+        /* Section */
+        section {
+            margin-top: 26px;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+
+        .section-head h2 {
+            margin: 0;
+            font-size: 18px;
+            letter-spacing: .2px;
+        }
+
+        .section-head p {
+            margin: 0;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        /* Reveal on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 {
+            transition-delay: .06s;
+        }
+
+        .delay-2 {
+            transition-delay: .12s;
+        }
+
+        .delay-3 {
+            transition-delay: .18s;
+        }
+
+        .delay-4 {
+            transition-delay: .24s;
+        }
+
+        .delay-5 {
+            transition-delay: .30s;
+        }
+
+        /* Team cards with slide overlay */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+        }
+
+        .person {
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px;
+        }
+
+
+        .person .imgwrap {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+        }
+
+        .person img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 
+        /* Slide overlay */
+        .person .overlay {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            padding: 14px 14px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+
+            /* overlay gradient */
+            background: linear-gradient(to top,
+                    rgba(0, 0, 0, .78) 0%,
+                    rgba(0, 0, 0, .35) 55%,
+                    rgba(0, 0, 0, 0) 100%);
+
+            /* Zorg dat tekst altijd boven image ligt */
+            z-index: 2;
+        }
+
+        */ .person .name {
+            margin: 0;
+            font-weight: 800;
+            font-size: 14px;
+            line-height: 1.2;
+        }
+
+        .person .role {
+            margin: 0;
+            font-size: 12px;
+            color: rgba(255, 255, 255, .85);
+            line-height: 1.25;
+
+            /* max 2 regels + ... */
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity .25s ease, transform .25s ease;
+        }
+
+        /* Alleen rol verschijnt bij hover */
+        .person:hover .role {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        .person::after {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            border-radius: var(--r);
+            box-shadow: 0 0 0 1px rgba(110, 231, 255, .20) inset;
+            opacity: 0;
+            transition: opacity .35s ease;
+            pointer-events: none;
+        }
+
+        .person:hover img {
+            transform: scale(1.08) rotate(-0.3deg);
+        }
+
+        /* .person:hover .role {
+            opacity: 1;
+            transform: translateY(0);
+        } */
+
+        .person:hover .overlay {
+            transform: translateY(0);
+        }
+
+        .person:hover::after {
+            opacity: 1;
+        }
+
+        /* Situations */
+        .two {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .card {
+            border-radius: var(--r);
+            border: 1px solid rgba(255, 255, 255, .10);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .03));
+            box-shadow: var(--shadow);
+            padding: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            background:
+                radial-gradient(260px 160px at 20% 15%, rgba(110, 231, 255, .16), transparent 60%),
+                radial-gradient(260px 160px at 80% 70%, rgba(167, 139, 250, .14), transparent 60%);
+            opacity: .75;
+            pointer-events: none;
+        }
+
+        .tag {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            padding: 7px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            background: rgba(0, 0, 0, .14);
+            color: var(--muted);
+            width: fit-content;
+        }
+
+        .tag .pin {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--a);
+            box-shadow: 0 0 0 6px rgba(110, 231, 255, .10);
+        }
+
+        .tag.goal .pin {
+            background: var(--b);
+            box-shadow: 0 0 0 6px rgba(167, 139, 250, .10);
+        }
+
+        .card h3 {
+            position: relative;
+            margin: 10px 0 8px;
+            font-size: 16px;
+        }
+
+        .card ul {
+            position: relative;
+            margin: 0;
+            padding-left: 18px;
+            color: var(--muted);
+        }
+
+        .card li {
+            margin: 8px 0;
+        }
+
+        footer {
+            margin-top: 26px;
+            color: var(--muted);
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            opacity: .95;
+        }
+
+        /* Responsive */
+        @media (max-width: 980px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .two {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 22px;
+            }
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+
+            .reveal,
+            .person img,
+            .person .overlay,
+            .btn {
+                transition: none !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <div class="container">
+        <header class="top">
+            <div class="brand">
+                <div class="logo"></div>
+                <div>One-Pager <span style="color:var(--muted); font-weight:700;">/ Motion</span></div>
+            </div>
+            <nav class="nav">
+                <a href="#team">Team</a>
+                <a href="#situatie">Situatie</a>
+            </nav>
+        </header>
 
-    <header class="bar bar--top">
-        <div class="container">
-            <h1 class="bar__title">TeamLogo (Nog ontwerpen)</h1>
-        </div>
-    </header>
+        <div class="hero reveal show">
+            <div class="hero-grid">
+                <div>
+                    <div class="kicker"><span class="spark"></span> Kort, strak en met animatie</div>
+                    <h1>Hybride wereld / One-pager</h1>
+                    <p class="lead">
+                        Zet hier jullie intro: wie jullie zijn en wat jullie willen oplossen (1–2 zinnen).
+                    </p>
 
-    <section class="section" id="team">
-        <div class="container">
-            <h2 class="section__title">Ons team</h2>
-
-            <div class="panel">
-                <div class="team">
-                    <div class="avatar" title="Teamlid 1"></div>
-                    <div class="avatar" title="Teamlid 2"></div>
-                    <div class="avatar" title="Teamlid 3"></div>
-                    <div class="avatar" title="Teamlid 4"></div>
+                    <div class="hero-actions">
+                        <a class="btn primary" href="#team"><span class="dot"></span>Bekijk het team</a>
+                        <a class="btn" href="#situatie">Naar situatie</a>
+                    </div>
                 </div>
-                <p class="helper">Tip: vervang straks de cirkels door echte foto’s (img) of initialen.</p>
+
+                <aside class="summary">
+                    <h3>In één oogopslag</h3>
+                    <ul>
+                        <li><b>Doel:</b> …</li>
+                        <li><b>Doelgroep:</b> …</li>
+                        <li><b>Waarom nu:</b> …</li>
+                    </ul>
+                </aside>
             </div>
         </div>
-    </section>
 
-    <div class="bar bar--mid" id="ontwerpvraag">
-        <div class="container">
-            <div class="bar__title">Ontwerpvraag</div>
-        </div>
+        <section id="team">
+            <div class="section-head">
+                <h2>Team</h2>
+                <p>Hover = overlay slide. Scroll = cards komen binnen.</p>
+            </div>
+
+            <div class="team-grid">
+                <article class="person reveal delay-1">
+                    <div class="imgwrap">
+                        <img src="images/persoon1.png" alt="Naam 1" />
+                        <div class="overlay">
+                            <p class="name">Lashanti Pieters</p>
+                            <p class="role">Communicatie Multimedia Design</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="person reveal delay-2">
+                    <div class="imgwrap">
+                        <img src="images/persoon2.jpg" alt="Naam 2" />
+                        <div class="overlay">
+                            <p class="name">Melisa Günde</p>
+                            <p class="role">Informatica</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="person reveal delay-3">
+                    <div class="imgwrap">
+                        <img src="images/persoon3.jpg" alt="Naam 3" />
+                        <div class="overlay">
+                            <p class="name">Zino Schubert</p>
+                            <p class="role">Creative Media and Gaming Technologies </p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="person reveal delay-4">
+                    <div class="imgwrap">
+                        <img src="images/persoon4.jpg" alt="Naam 4" />
+                        <div class="overlay">
+                            <p class="name">Amir de Jesus Amado</p>
+                            <p class="role">Applied Data Science & Artificial Intelligence</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="person reveal delay-5">
+                    <div class="imgwrap">
+                        <img src="images/persoon5.jpg" alt="Naam 5" />
+                        <div class="overlay">
+                            <p class="name">Santi van Wijk</p>
+                            <p class="role">Applied Data Science & Artificial Intelligence</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="situatie">
+            <div class="section-head">
+                <h2>Huidige vs gewenste situatie</h2>
+                <p>Strakke cards, klaar om te vullen.</p>
+            </div>
+
+            <div class="two">
+                <div class="card reveal">
+                    <div class="tag"><span class="pin"></span>Huidige situatie</div>
+                    <h3>Wat is het probleem nu?</h3>
+                    <ul>
+                        <li>Dit gebeurt er nu: …</li>
+                        <li>Wie heeft er last van: …</li>
+                        <li>Waarom is dit vervelend: …</li>
+                        <li>Impact (tijd/kosten/frustratie): …</li>
+                    </ul>
+                </div>
+
+                <div class="card reveal">
+                    <div class="tag goal"><span class="pin"></span>Gewenste situatie</div>
+                    <h3>Wat willen we bereiken?</h3>
+                    <ul>
+                        <li>Doelbeeld: …</li>
+                        <li>Hoe ziet de oplossing eruit: …</li>
+                        <li>Hoe meten we succes: …</li>
+                        <li>Impact voor doelgroep: …</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div>© <span id="y"></span> Jullie team</div>
+            <div>Contact: <span style="color:var(--text)">mail@voorbeeld.nl</span></div>
+        </footer>
     </div>
 
-    <section class="section" id="huidig">
-        <div class="container">
-            <h2 class="section__title">Huidige situatie</h2>
+    <script>
+        // jaar
+        document.getElementById("y").textContent = new Date().getFullYear();
 
-            <div class="panel split">
-                <div>
-                    <p class="helper" style="margin-top:0;">
-                        Zet hier straks 2–4 bullets of een korte uitleg. Bijvoorbeeld: wat gaat er nu mis, waar loopt
-                        men tegenaan?
-                    </p>
-                </div>
+        // scroll reveal
+        const els = document.querySelectorAll(".reveal");
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add("show");
+            });
+        }, { threshold: 0.12 });
 
-                <div class="placeholder" aria-label="Huidige situatie afbeelding"></div>
-            </div>
-        </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <section class="section" id="gewenst">
-        <div class="container">
-            <h2 class="section__title">Gewenste situatie</h2>
-
-            <div class="panel split split--reverse">
-                <div class="placeholder" aria-label="Gewenste situatie afbeelding"></div>
-
-                <div>
-                    <p class="helper" style="margin-top:0;">
-                        Zet hier wat jullie doel is. Bijvoorbeeld: “We willen dat gebruikers X binnen Y seconden
-                        kunnen…”
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <section class="section" id="contact">
-        <div class="container">
-            <h2 class="section__title">Contact</h2>
-            <div class="panel">
-                <p class="helper" style="margin-top:0;">Mail: <strong>contact@bdrr.nl</strong> (placeholder)</p>
-            </div>
-        </div>
-    </section>
-
+        els.forEach(el => io.observe(el));
+    </script>
 </body>
-
 
 </html>
