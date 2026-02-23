@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="nl">
+<html lang="nl" data-theme="dark">
 
 <head>
     <meta charset="utf-8" />
@@ -18,6 +18,16 @@
             --c: #34d399;
             --shadow: 0 18px 60px rgba(0, 0, 0, .42);
             --r: 18px;
+        }
+
+        /* ✅ LIGHT MODE (toegevoegd) */
+        html[data-theme="light"] {
+            --bg0: #f4f6ff;
+            --bg1: #e9edff;
+            --text: #0f172a;
+            --muted: #475569;
+            --stroke: rgba(0, 0, 0, .12);
+            --shadow: 0 18px 60px rgba(0, 0, 0, .15);
         }
 
         * {
@@ -101,6 +111,25 @@
             border-color: var(--stroke);
             color: var(--text);
             transform: translateY(-1px);
+        }
+
+        /* ✅ Toggle knop styling (toegevoegd) */
+        .theme-toggle {
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--stroke);
+            background: rgba(255, 255, 255, .06);
+            color: var(--text);
+            cursor: pointer;
+            transition: .2s ease;
+            font-size: 14px;
+            line-height: 1;
+            user-select: none;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-1px);
+            background: rgba(255, 255, 255, .09);
         }
 
         /* Hero */
@@ -324,9 +353,8 @@
         .person {
             position: relative;
             overflow: hidden;
-            border-radius: 18px;
+            /* border-radius: 18px; */
         }
-
 
         .person .imgwrap {
             position: relative;
@@ -341,9 +369,8 @@
             display: block;
         }
 
-        /* 
         /* Slide overlay */
-        .person .overlay {
+        /* .person .overlay {
             position: absolute;
             left: 0;
             right: 0;
@@ -354,17 +381,50 @@
             flex-direction: column;
             gap: 6px;
 
-            /* overlay gradient */
             background: linear-gradient(to top,
                     rgba(0, 0, 0, .78) 0%,
                     rgba(0, 0, 0, .35) 55%,
                     rgba(0, 0, 0, 0) 100%);
 
-            /* Zorg dat tekst altijd boven image ligt */
             z-index: 2;
+        } */
+        .person .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+
+            padding: 14px;
+
+            background: linear-gradient(to top,
+                    rgba(0, 0, 0, 0.85),
+                    rgba(0, 0, 0, 0.4),
+                    transparent);
+
+            transform: translateY(100%);
+            /* volledig onder beeld */
+            transition: transform 0.4s ease;
+
+            max-height: 70%;
+            /* voorkomt dat lange tekst alles bedekt */
+            overflow-y: auto;
+            /* scroll als tekst te lang is */
         }
 
-        */ .person .name {
+        /* ✅ overlay voor light mode (toegevoegd) */
+        html[data-theme="light"] .person .overlay {
+            background: linear-gradient(to top,
+                    rgba(255, 255, 255, .85) 0%,
+                    rgba(255, 255, 255, .40) 55%,
+                    rgba(255, 255, 255, 0) 100%);
+        }
+
+        /* ✅ rol kleur in light mode (toegevoegd) */
+        html[data-theme="light"] .person .role {
+            color: rgba(0, 0, 0, .75);
+        }
+
+        .person .name {
             margin: 0;
             font-weight: 800;
             font-size: 14px;
@@ -377,7 +437,6 @@
             color: rgba(255, 255, 255, .85);
             line-height: 1.25;
 
-            /* max 2 regels + ... */
             overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -388,12 +447,10 @@
             transition: opacity .25s ease, transform .25s ease;
         }
 
-        /* Alleen rol verschijnt bij hover */
         .person:hover .role {
             opacity: 1;
             transform: translateY(0);
         }
-
 
         .person::after {
             content: "";
@@ -409,11 +466,6 @@
         .person:hover img {
             transform: scale(1.08) rotate(-0.3deg);
         }
-
-        /* .person:hover .role {
-            opacity: 1;
-            transform: translateY(0);
-        } */
 
         .person:hover .overlay {
             transform: translateY(0);
@@ -555,6 +607,10 @@
                 <div class="logo"></div>
                 <div>One-Pager <span style="color:var(--muted); font-weight:700;">/ Motion</span></div>
             </div>
+
+            <!-- ✅ Toggle knop toegevoegd -->
+            <button class="theme-toggle" id="themeToggle" type="button">🌙 Dark</button>
+
             <nav class="nav">
                 <a href="#team">Team</a>
                 <a href="#situatie">Situatie</a>
@@ -590,7 +646,7 @@
         <section id="team">
             <div class="section-head">
                 <h2>Team</h2>
-                <p>Hover = overlay slide. Scroll = cards komen binnen.</p>
+                <p></p>
             </div>
 
             <div class="team-grid">
@@ -649,7 +705,7 @@
         <section id="situatie">
             <div class="section-head">
                 <h2>Huidige vs gewenste situatie</h2>
-                <p>Strakke cards, klaar om te vullen.</p>
+                <p></p>
             </div>
 
             <div class="two">
@@ -696,6 +752,24 @@
         }, { threshold: 0.12 });
 
         els.forEach(el => io.observe(el));
+
+        // ✅ THEME TOGGLE (toegevoegd)
+        const root = document.documentElement;
+        const btn = document.getElementById("themeToggle");
+
+        function setTheme(theme) {
+            root.setAttribute("data-theme", theme);
+            localStorage.setItem("theme", theme);
+            btn.textContent = theme === "light" ? "☀️ Light" : "🌙 Dark";
+        }
+
+        const savedTheme = localStorage.getItem("theme") || "dark";
+        setTheme(savedTheme);
+
+        btn.addEventListener("click", () => {
+            const current = root.getAttribute("data-theme");
+            setTheme(current === "dark" ? "light" : "dark");
+        });
     </script>
 </body>
 
