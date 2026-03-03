@@ -15,13 +15,21 @@
                 <img src="images/logo.png" alt="One-Pager Logo" class="logo">
             </div>
 
-            <!-- ✅ Toggle knop toegevoegd -->
-            <button class="theme-toggle" id="themeToggle" type="button">🌙 Dark</button>
+            <div class="top-actions">
+                <nav class="nav">
+                    <a href="#team">Team</a>
+                    <a href="#situatie">Situatie</a>
+                </nav>
 
-            <nav class="nav">
-                <a href="#team">Team</a>
-                <a href="#situatie">Situatie</a>
-            </nav>
+                <!-- Theme toggle -->
+                <button class="theme-switch" id="themeToggle" type="button" role="switch" aria-checked="true"
+                    aria-label="Toggle dark mode">
+                    <span class="theme-switch__track" aria-hidden="true">
+                        <span class="theme-switch__thumb" aria-hidden="true"></span>
+                    </span>
+                    <span class="sr-only">Toggle theme</span>
+                </button>
+            </div>
         </header>
 
         <div class="hero reveal show">
@@ -315,7 +323,10 @@
         function setTheme(theme) {
             root.setAttribute("data-theme", theme);
             localStorage.setItem("theme", theme);
-            btn.textContent = theme === "light" ? "☀️ Light" : "🌙 Dark";
+            const isDark = theme === "dark";
+            btn.setAttribute("aria-checked", isDark ? "true" : "false");
+            btn.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+            btn.setAttribute("title", isDark ? "Switch to light mode" : "Switch to dark mode");
         }
 
         const savedTheme = localStorage.getItem("theme") || "dark";
