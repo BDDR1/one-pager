@@ -1,6 +1,6 @@
 # README 
 
-## one-pager website of Team Build Digital Design Right
+## One-pager website | Team Build Digital Design Right
 
 <img src="./images/logo.png" width="200" alt="Project Screenshot" />
 
