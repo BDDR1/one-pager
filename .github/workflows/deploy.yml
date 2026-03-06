@@ -1,9 +1,10 @@
 name: Deploy to HR Student Hosting
 
 on:
+  workflow_dispatch:
   push:
     branches:
-      - master
+      - feature/add-cicd-pipeline
 
 jobs:
   deploy:
@@ -21,4 +22,4 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           local_path: ./
-          remote_path: public.www/
+          remote_path: projecten/2025_2026_idp_hw_t7/
