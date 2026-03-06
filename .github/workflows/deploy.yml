@@ -18,7 +18,7 @@ jobs:
         with:
           server: stud.hosted.hr.nl
           port: 22
-          username: 1053476
+          username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           local_path: ./
           remote_path: public.www/
