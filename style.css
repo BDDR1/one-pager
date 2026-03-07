@@ -950,6 +950,18 @@ footer {
     color: var(--muted);
 }
 
+#situatie .section-head {
+    display: block;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#team .section-head {
+    display: block;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
 /* Animatie */
 @keyframes scroll-left {
     from {
