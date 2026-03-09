@@ -21,6 +21,7 @@
                     <a href="#situatie">Situatie</a>
                     <a href="#timeline">Tijdlijn</a>
                     <a href="#demo">Product demo</a>
+                    <a href="#teamwaarden">Teamwaarden</a>
                     <a href="#companynames">Partners</a>
                 </nav>
 
@@ -245,6 +246,33 @@
                 </div>
             </div>
         </section>
+
+        <section id="teamwaarden">
+            <div class="section-head">
+                <h2>Team Waarden</h2>
+                <p>Klik op een waarde om de uitleg te zien</p>
+            </div>
+            
+            <div class="waarden-grid">
+                <div class="waarde-item">
+                    <button class="waarde-btn" data-text="We moeten keuzevrijheid waarborgen en mensen ruimte geven om hun eigen keuzes te maken.">Vrijheid</button>
+                </div>
+                <div class="waarde-item">
+                    <button class="waarde-btn" data-text="We moeten gezondheid zien als een voorwaarde voor volwaardige deelname aan de samenleving, niet alleen lichamelijk welzijn, maar ook een gezonde relatie met tech.">Gezondheid</button>
+                </div>
+                <div class="waarde-item">
+                    <button class="waarde-btn" data-text="We moeten actief ondersteuning bieden, voor een stad waar mensen voor elkaar zorgen – technologie kan hierbij goed ondersteunen.">Behulpzaamheid</button>
+                </div>
+                <div class="waarde-item">
+                    <button class="waarde-btn" data-text="We moeten regels transparant en zonder uitzonderingen toepassen, zodat iedereen zich veilig en gerespecteerd voelt.">Eerlijkheid</button>
+                </div>
+
+                <div id="central-waarde-content" class="waarde-content">
+                    <p id="waarde-text-placeholder"></p>
+                </div>
+            </div>
+        </section>
+
         <section id="companynames">
             <div class="section-head">
                 <h2>Partners van dit project</h2>
@@ -336,6 +364,36 @@
         btn.addEventListener("click", () => {
             const current = root.getAttribute("data-theme");
             setTheme(current === "dark" ? "light" : "dark");
+        });
+
+        const waardeButtons = document.querySelectorAll(".waarde-btn");
+        const contentBox = document.getElementById("central-waarde-content");
+        const textPlaceholder = document.getElementById("waarde-text-placeholder");
+
+        waardeButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const newText = button.getAttribute("data-text");
+                const isActive = button.classList.contains("active");
+
+                // 1. Remove "active" class from all buttons first
+                waardeButtons.forEach(btn => btn.classList.remove("active"));
+
+                // 2. Logic to toggle
+                if (isActive) {
+                    // If we clicked the same button, just close the box
+                    contentBox.classList.remove("open");
+                } else {
+                    // Otherwise, open/update the box and highlight this button
+                    button.classList.add("active");
+                    textPlaceholder.innerText = newText;
+                    contentBox.classList.add("open");
+                    
+                    // Smooth scroll to the content
+                    setTimeout(() => {
+                        contentBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 150);
+                }
+            });
         });
     </script>
 </body>

@@ -1000,6 +1000,7 @@ footer {
 
 #demo {
     margin-top: 40px;
+    margin-bottom: 80px;
 }
 
 #demo .section-head {
@@ -1046,4 +1047,105 @@ footer {
 
 .timeline-container::-webkit-scrollbar-thumb:hover {
     background: rgba(255,255,255,.4);
+}
+
+/* Team Waarden Section */
+#teamwaarden {
+    margin-top: 60px;
+    text-align: center;
+}
+
+#teamwaarden .waarden-grid {
+    display: flex;
+    justify-content: space-between; /* spreads buttons evenly */
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 800px; /* optional: constrain width */
+    margin: 0px auto 0 auto;
+}
+
+/* Buttons */
+.waarde-btn {
+    background: linear-gradient(135deg, rgba(110,231,255,0.18), rgba(167,139,250,0.14));
+    border: 1px solid rgba(110,231,255,0.3);
+    border-radius: 14px;
+    color: var(--text);
+    font-weight: 600;
+    padding: 12px 0;
+    width: 100%;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    font-size: 16px;
+}
+
+.waarde-btn:hover {
+    background: linear-gradient(135deg, rgba(110,231,255,0.25), rgba(167,139,250,0.20));
+    transform: translateY(-2px);
+}
+
+/* Light mode tweaks */
+html[data-theme="light"] .waarde-btn {
+    background: linear-gradient(135deg, rgba(15,23,42,0.10), rgba(71,85,105,0.10));
+    border: 1px solid rgba(0,0,0,0.12);
+    color: var(--text);
+}
+
+/* Responsive: stack on smaller screens */
+@media (max-width: 640px) {
+    #teamwaarden .waarden-grid {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+/* Team Waarden Section Update */
+#teamwaarden .waarden-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1000px; /* Iets breder voor de tekst */
+    margin: 40px auto 0 auto;
+}
+
+.waarde-item {
+    flex: 1;
+    min-width: 150px;
+}
+
+.waarde-content p {
+    font-size: 18px;
+    line-height: 1.7; /* Jouw gevraagde regelafstand */
+    margin: 0;
+    color: var(--text);
+}
+
+html[data-theme="light"] .waarde-content {
+    background: white;
+    box-shadow: var(--shadow);
+}
+
+/* The container for the text */
+#central-waarde-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.3s ease, margin 0.3s ease;
+    margin-top: 0;
+}
+
+/* When the "open" class is added via JS */
+#central-waarde-content.open {
+    max-height: 500px; /* Adjust based on your text length */
+    opacity: 1;
+    margin-top: 30px;
+    padding: 20px;
+    border-top: 1px solid rgba(110,231,255,0.2);
+}
+
+/* Visual feedback for the active button */
+.waarde-btn.active {
+    background: linear-gradient(135deg, rgba(110,231,255,0.4), rgba(167,139,250,0.3));
+    border-color: rgba(110,231,255,0.8);
+    transform: scale(0.98);
 }
