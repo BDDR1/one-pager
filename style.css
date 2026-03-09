@@ -962,6 +962,27 @@ footer {
     margin-bottom: 30px;
 }
 
+#context .lead {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.7;
+}
+
+#context .card {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#intro .lead {
+    max-width: 800px;
+    line-height: 1.7;
+}
+
+#intro .card {
+    margin-bottom: 30px;
+}
+
 /* Animatie */
 @keyframes scroll-left {
     from {
