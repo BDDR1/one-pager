@@ -10,7 +10,7 @@ USERNAME = os.getenv("HR_USER")
 PASSWORD = os.getenv("HR_PASS")
 
 LOCAL_DIR = "."
-REMOTE_DIR = "public.www"
+REMOTE_DIR = "projecten/2025_2026_idp_hw_t7"
 
 transport = paramiko.Transport((HOST, PORT))
 transport.connect(username=USERNAME, password=PASSWORD)
