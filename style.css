@@ -273,6 +273,10 @@ html[data-theme="light"] .theme-switch__track::after {
     text-shadow: 0 1px 1px rgba(255, 255, 255, .25);
 }
 
+html[data-theme="light"] .timeline-container::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,.25);
+}
+
 html[data-theme="light"] .theme-switch__track::before,
 html[data-theme="light"] .theme-switch__track::after {
     background: rgba(255, 255, 255, .30);
@@ -464,6 +468,7 @@ section {
     margin: 0;
     font-size: 18px;
     letter-spacing: .2px;
+    text-align: center;
 }
 
 .section-head p {
@@ -708,81 +713,155 @@ html[data-theme="light"] .person .role {
     margin: 8px 0;
 }
 
-/* Timeline */
+/* container */
+
 .timeline-container {
-    max-width: 896px;
-    /* max-w-4xl */
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+    max-width: 1000px;
+    margin: 80px auto;
+    overflow-x: auto;
+    padding-bottom: 20px;
 }
+
+/* track */
+
+
+.timeline-track {
+    display: flex;
+    gap: 80px;
+    position: relative;
+    padding-top: 60px;
+    width: max-content; /* zorgt dat de track net zo breed wordt als alle items samen */
+}
+
+.timeline-track::before {
+    content: "";
+    position: absolute;
+    top: 32px;
+    left: 0;
+    right: 0; /* belangrijk: laat lijn volledig doorlopen */
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        rgba(52,211,153,0.2),
+        rgba(52,211,153,0.6),
+        rgba(52,211,153,0.2)
+    );
+}
+
+/* item */
 
 .timeline-item {
-    display: grid;
-    grid-template-columns: 160px 1fr;
-    gap: 24px;
+    position: relative;
+    min-width: 320px;
+    text-align: center;
 }
 
+/* punt */
+
+.timeline-dot {
+    width: 16px;
+    height: 16px;
+    background: var(--a);
+    border-radius: 50%;
+    margin: 0 auto 14px;
+    position: relative;
+    top: -36px; /* schuift de dot omhoog */
+    z-index: 2;
+
+    box-shadow:
+        0 0 0 6px rgba(52,211,153,0.1),
+        0 0 16px rgba(52,211,153,0.6);
+}
+
+/* datum */
+
 .timeline-date {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family: ui-monospace, monospace;
     color: var(--muted);
     font-size: 13px;
-    padding-top: 4px;
+    margin-bottom: 14px;
 }
 
 .timeline-date span {
     display: block;
     font-weight: 700;
     color: var(--a);
-    font-size: 15px;
-    margin-bottom: 4px;
+    font-size: 16px;
 }
+
+/* card */
 
 .timeline-content {
-    padding-bottom: 24px;
-    border-bottom: 1px solid var(--stroke);
+    border: 1px solid var(--stroke);
+    border-radius: 12px;
+    padding: 20px;
+    background: rgba(255,255,255,0.02);
+
+    backdrop-filter: blur(6px);
+
+    transition: all .25s ease;
 }
 
-.timeline-item:last-child .timeline-content {
-    border-bottom: none;
+/* hover effect */
+
+.timeline-content:hover {
+    transform: translateY(-6px);
+    border-color: var(--a);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.25),
+        0 0 20px rgba(52,211,153,0.15);
 }
 
 .timeline-title {
-    margin: 0 0 10px;
     font-size: 18px;
-    font-weight: 700;
-    color: var(--text);
-    transition: color .2s ease;
-}
-
-.timeline-title:hover {
-    color: var(--a);
+    margin-bottom: 10px;
 }
 
 .timeline-desc {
-    margin: 0 0 16px;
+    font-size: 14px;
     color: var(--muted);
     line-height: 1.6;
-    font-size: 15px;
 }
+
+.video-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.video-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* houdt 16:9 verhouding */
+    background-color: white; /* grijs vlak */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 18px;
+    border-radius: 12px;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* tech stack */
 
 .tech-stack {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 8px;
+    margin-top: 10px;
 }
 
 .tech-tag {
     font-size: 12px;
     padding: 4px 10px;
     border-radius: 6px;
-    background: rgba(52, 211, 153, .10);
+    background: rgba(52,211,153,.10);
     color: var(--c);
-    border: 1px solid rgba(52, 211, 153, .20);
-    font-weight: 500;
+    border: 1px solid rgba(52,211,153,.20);
 }
-
 footer {
     margin-top: 26px;
     color: var(--muted);
@@ -875,6 +954,39 @@ footer {
     color: var(--muted);
 }
 
+#situatie .section-head {
+    display: block;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#team .section-head {
+    display: block;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#context .lead {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.7;
+}
+
+#context .card {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#intro .lead {
+    max-width: 800px;
+    line-height: 1.7;
+}
+
+#intro .card {
+    margin-bottom: 30px;
+}
+
 /* Animatie */
 @keyframes scroll-left {
     from {
@@ -888,6 +1000,7 @@ footer {
 
 #demo {
     margin-top: 40px;
+    margin-bottom: 80px;
 }
 
 #demo .section-head {
@@ -917,4 +1030,122 @@ footer {
     height: 80px; 
     width: auto; 
     margin-top: 20px;
+}
+
+.timeline-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.timeline-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.timeline-container::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,.2);
+    border-radius: 999px;
+}
+
+.timeline-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,.4);
+}
+
+/* Team Waarden Section */
+#teamwaarden {
+    margin-top: 60px;
+    text-align: center;
+}
+
+#teamwaarden .waarden-grid {
+    display: flex;
+    justify-content: space-between; /* spreads buttons evenly */
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 800px; /* optional: constrain width */
+    margin: 0px auto 0 auto;
+}
+
+/* Buttons */
+.waarde-btn {
+    background: linear-gradient(135deg, rgba(110,231,255,0.18), rgba(167,139,250,0.14));
+    border: 1px solid rgba(110,231,255,0.3);
+    border-radius: 14px;
+    color: var(--text);
+    font-weight: 600;
+    padding: 12px 0;
+    width: 100%;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    font-size: 16px;
+}
+
+.waarde-btn:hover {
+    background: linear-gradient(135deg, rgba(110,231,255,0.25), rgba(167,139,250,0.20));
+    transform: translateY(-2px);
+}
+
+/* Light mode tweaks */
+html[data-theme="light"] .waarde-btn {
+    background: linear-gradient(135deg, rgba(15,23,42,0.10), rgba(71,85,105,0.10));
+    border: 1px solid rgba(0,0,0,0.12);
+    color: var(--text);
+}
+
+/* Responsive: stack on smaller screens */
+@media (max-width: 640px) {
+    #teamwaarden .waarden-grid {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+/* Team Waarden Section Update */
+#teamwaarden .waarden-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1000px; /* Iets breder voor de tekst */
+    margin: 40px auto 0 auto;
+}
+
+.waarde-item {
+    flex: 1;
+    min-width: 150px;
+}
+
+.waarde-content p {
+    font-size: 18px;
+    line-height: 1.7; /* Jouw gevraagde regelafstand */
+    margin: 0;
+    color: var(--text);
+}
+
+html[data-theme="light"] .waarde-content {
+    background: white;
+    box-shadow: var(--shadow);
+}
+
+/* The container for the text */
+#central-waarde-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.3s ease, margin 0.3s ease;
+    margin-top: 0;
+}
+
+/* When the "open" class is added via JS */
+#central-waarde-content.open {
+    max-height: 500px; /* Adjust based on your text length */
+    opacity: 1;
+    margin-top: 30px;
+    padding: 20px;
+    border-top: 1px solid rgba(110,231,255,0.2);
+}
+
+/* Visual feedback for the active button */
+.waarde-btn.active {
+    background: linear-gradient(135deg, rgba(110,231,255,0.4), rgba(167,139,250,0.3));
+    border-color: rgba(110,231,255,0.8);
+    transform: scale(0.98);
 }
