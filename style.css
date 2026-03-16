@@ -973,7 +973,19 @@ footer {
     line-height: 1.7;
 }
 
+#visie .lead {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.7;
+}
+
 #context .card {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#visie .card {
     text-align: center;
     margin-bottom: 30px;
 }
