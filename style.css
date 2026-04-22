@@ -1173,3 +1173,48 @@ html[data-theme="light"] .waarde-content {
     transform: scale(1.1); /* iets groter */
     color: #ddd; /* optioneel iets lichtere tint */
 }
+
+@media (max-width: 768px) {
+
+  /* container: geen horizontal scroll meer */
+  .timeline-container {
+    overflow-x: visible;
+    margin: 40px auto;
+  }
+
+  /* track: van horizontaal → verticaal */
+  .timeline-track {
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+    padding-top: 0;
+  }
+
+  /* lijn: van horizontaal → verticaal links */
+  .timeline-track::before {
+    top: 0;
+    left: 16px;
+    width: 3px;
+    height: 100%;
+  }
+
+  /* items full width */
+  .timeline-item {
+    min-width: 100%;
+    text-align: left;
+    padding-left: 40px;
+  }
+
+  /* dot netjes op lijn */
+  .timeline-dot {
+    position: absolute;
+    left: 8px;
+    top: 0;
+    margin: 0;
+  }
+
+  /* content spacing */
+  .timeline-content {
+    margin-top: 10px;
+  }
+}
